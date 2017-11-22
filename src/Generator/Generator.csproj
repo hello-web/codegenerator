@@ -155,6 +155,7 @@
     <Compile Include="Expressions\ColumnDefaultExpression.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Expressions\ColumnEFMapTypeExpression.cs" />
     <Compile Include="Expressions\ColumnIfExpression.cs">
       <SubType>Code</SubType>
     </Compile>
