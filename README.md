@@ -5,39 +5,39 @@ iCodeGenerator is a database centric template based code generator for any text(
 ## Syntax
 ### Database
 
-- {DATABASE.NAME}
+**{DATABASE.NAME}**
 Returns the database name.
 ### Table
 
-- {TABLE.NAME}
+**{TABLE.NAME}**
 Returns the table name.
-- {TABLE.SCHEMA}
+**{TABLE.SCHEMA}**
 Returns the table schema.
-- {TABLE.COLUMNS}...{/TABLE.COLUMNS}
+**{TABLE.COLUMNS}...{/TABLE.COLUMNS}**
 Its a placeholder for the Column tags. Which can have the attributes of PRIMARY, NOPRIMARY or ALL (default) to filter which columns to process.
 ### Columns
 
-- {COLUMN.TYPE}
+**{COLUMN.TYPE}**
 Returns the column type.
--  {COLUMN.DEFAULT}
+**{COLUMN.DEFAULT}**
 Returns the column default value.
-- {COLUMN.NAME}
+**{COLUMN.NAME}**
 Returns the column name.
-- {COLUMN.LENGTH}
+**{COLUMN.LENGTH}**
 Returns the column length
-- {MAP COLUMN.TYPE}
+**{MAP COLUMN.TYPE}**
 Returns the mapping value to the column type defined in the config file: DataTypeMapping.xml.
 Conditional Statements
 
-- {IF NOT COLUMN.NULLABLE}{/IF}
+**{IF NOT COLUMN.NULLABLE}{/IF}**
 Condition to test if column is nullable or not.
-- {IF COLUMN.TYPE EQ ‘int’}{/IF}
+**{IF COLUMN.TYPE EQ ‘int’}{/IF}**
 Condition to test if column equals a SQL type.
-- {IF COLUMN.NAME =~ ‘Id’}{/IF}
+**{IF COLUMN.NAME =~ ‘Id’}{/IF}**
 Condition to test if the name of the column contains a string.
-- {IF NOT LAST},{/IF}
+**{IF NOT LAST},{/IF}**
 Condition to test if it is the last column.
 ### Custom
 
-- {NAME_OF_YOUR_TAG}
+**{NAME_OF_YOUR_TAG}**
 Custom Values are Key/Value Pairs that you can define to use on a template.
