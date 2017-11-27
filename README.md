@@ -41,3 +41,28 @@ Condition to test if it is the last column.
 
 - **{NAME_OF_YOUR_TAG}**
 Custom Values are Key/Value Pairs that you can define to use on a template.
+
+
+
+```
+public class {TABLE.NAME}Mapping : EntityTypeConfiguration<{TABLE.NAME}Model>,IRegisterMapping
+	{
+		public {TABLE.NAME}Mapping()
+		{
+	    	ToTable("{TABLE.NAME}");
+
+               {TABLE.COLUMNS}
+	         Property(i => i.{COLUMN.NAME}).HasColumnName("{COLUMN.NAME}").HasColumnType("{COLUMN.TYPE}"){IF NOT COLUMN.NULLABLE}.IsRequired(){/IF};
+               {/TABLE.COLUMNS}
+		
+		}
+	}
+```
+public class {TABLE.NAME}Model:Entity
+{
+      {TABLE.COLUMNS}
+      public {MAP COLUMN.TYPE} {COLUMN.NAME} {set;get;}
+     {/TABLE.COLUMNS}
+}
+```
+```
