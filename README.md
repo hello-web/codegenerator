@@ -58,6 +58,8 @@ public class {TABLE.NAME}Mapping : EntityTypeConfiguration<{TABLE.NAME}Model>,IR
 		}
 	}
 ```
+
+```
 public class {TABLE.NAME}Model:Entity
 {
       {TABLE.COLUMNS}
@@ -65,4 +67,4 @@ public class {TABLE.NAME}Model:Entity
      {/TABLE.COLUMNS}
 }
 ```
-```
+
