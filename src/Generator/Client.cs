@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using iCodeGenerator.DatabaseStructure;
+using iCodeGenerator.Generator.Expressions;
 
 namespace iCodeGenerator.Generator
 {
@@ -9,6 +10,9 @@ namespace iCodeGenerator.Generator
 		private readonly Context _Context;
 		private Table _Table;
 		private IDictionary _CustomValues;
+
+
+        public string ReplaceText { set; get; }
 
 		public string StartDelimiter
 		{
@@ -84,6 +88,11 @@ namespace iCodeGenerator.Generator
 					parser.AddExpression(new LiteralExpression(entry.Key.ToString(),entry.Value.ToString()));		
 				}
 			}
+
+            if (!String.IsNullOrEmpty(ReplaceText))
+            {
+                parser.AddExpression(new TextRemoveExpression(ReplaceText));
+            }
 			parser.Interpret(_Context);
 			return _Context.Output;
 		}

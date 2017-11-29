@@ -119,7 +119,7 @@ namespace iCodeGenerator.iCodeGeneratorGui
 			try
 			{
 				if (_selectedTable == null) return;
-				var cgenerator = new Client {CustomValues = _cvf.CustomValues};
+				var cgenerator = new Client {CustomValues = _cvf.CustomValues, ReplaceText = _cvf.ReplaceText};
 			    _rf.ContentText = cgenerator.Parse(_selectedTable, _df.ContentText);
 			}
 			catch (DataTypeManagerException ex)

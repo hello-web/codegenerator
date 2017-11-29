@@ -149,3 +149,4 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+/src/.vs/iCodeGenerator/v15/sqlite3/storage.ide

@@ -155,7 +155,6 @@
     <Compile Include="Expressions\ColumnDefaultExpression.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Expressions\ColumnEFMapTypeExpression.cs" />
     <Compile Include="Expressions\ColumnIfExpression.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -193,6 +192,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Expressions\TableSchemaExpression.cs" />
+    <Compile Include="Expressions\TextRemoveExpression.cs" />
     <Compile Include="FileGenerator.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -72,6 +72,15 @@ namespace iCodeGenerator.iCodeGeneratorGui
 
 		}
 
+        public string ReplaceText
+        {
+            get
+            {
+
+                return txtRemoveText.Text;
+            }
+        }
+
         private void GridCustomValuesLeave(object sender, EventArgs e)
         {
             FilterEmptyCustomValues();
