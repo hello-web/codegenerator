@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DataTypes>
 	<Language name="CSharp" selected="true">
+    <SqlType name="uniqueidentifier">Guid</SqlType>
 		<SqlType name="int">int</SqlType>
 		<SqlType name="bigint">int</SqlType>
 		<SqlType name="smallint">int</SqlType>
-		<SqlType name="tinyint">int</SqlType>
+    <SqlType name="decimal">decimal</SqlType>
+    <SqlType name="tinyint">int</SqlType>
 		<SqlType name="numeric">int</SqlType>
 		<SqlType name="float">double</SqlType>
 		<SqlType name="real">double</SqlType>

@@ -35,6 +35,12 @@ namespace iCodeGenerator.Generator
 			{
 				strValue = "object";
 			}
+
+            if (column.Nullable && strValue !="string")
+            {
+                strValue = strValue + "?";
+            }
+
 			
 			context.Output = Regex.Replace(context.Input,Context.StartDelimeter + "MAP COLUMN.TYPE" + Context.EndingDelimiter,strValue);
 			context.Input = context.Output;
