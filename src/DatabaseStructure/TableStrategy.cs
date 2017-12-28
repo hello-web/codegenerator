@@ -15,7 +15,7 @@ namespace iCodeGenerator.DatabaseStructure
 			{
 				connection.Open();	
 			}			
-			connection.ChangeDatabase(database.Name);
+			//connection.ChangeDatabase(database.Name);
 			DataSet ds; 
 			if (Server.ProviderType != DataProviderType.Oracle)
 			{
@@ -50,7 +50,11 @@ namespace iCodeGenerator.DatabaseStructure
 			{
 				connection.Open();
 			}
-			connection.ChangeDatabase(database.Name);
+            if(Server.ProviderType != DataProviderType.Oracle)
+            {
+                connection.ChangeDatabase(database.Name);
+            }
+			
 			var ds = ViewSchema(dataAccessProviderFactory, connection);
 			connection.Close();
 			if (ds.Tables.Count > 0)
