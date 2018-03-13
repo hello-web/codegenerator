@@ -147,6 +147,7 @@
     <Compile Include="ColumnStrategy.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CommentStrategy.cs" />
     <Compile Include="Database.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -183,6 +184,7 @@
     <Compile Include="Oracle\ColumnStrategyOracle.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Oracle\CommentStrategyOracle.cs" />
     <Compile Include="Oracle\DatabaseStrategyOracle.cs">
       <SubType>Code</SubType>
     </Compile>

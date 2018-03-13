@@ -14,6 +14,12 @@ namespace iCodeGenerator.DatabaseStructure
 		private string _default;
 
 
+        /// <summary>
+        /// column comments
+        /// </summary>
+        public string Comments { set; get; }
+
+
 		public Column()
 		{
 		}

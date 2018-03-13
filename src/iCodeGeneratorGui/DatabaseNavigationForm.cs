@@ -18,6 +18,14 @@ namespace iCodeGenerator.iCodeGeneratorGui
             InitializeComponent();
         }
 
+        public NavigatorControl OutNavigatorControl
+        {
+            get
+            {
+                return this.navigatorControl;
+            } 
+        }
+
         public void Connect()
         {
 			navigatorControl.Connect();
