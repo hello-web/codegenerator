@@ -215,6 +215,7 @@
     <Compile Include="SQLServer\ColumnStrategySQLServer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SQLServer\CommentStrategySQLServer.cs" />
     <Compile Include="SQLServer\DatabaseStrategySQLServer.cs">
       <SubType>Code</SubType>
     </Compile>
