@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Text.RegularExpressions;
 using iCodeGenerator.DatabaseStructure;
 
@@ -93,9 +94,25 @@ namespace iCodeGenerator.Generator
 
 	    private static string PascalReplacement(string name)
         {
-            var replacement = name.Replace("_", String.Empty);
-            replacement = replacement.Substring(0, 1).ToUpper() + replacement.Substring(1);
-            return replacement;
+          var splitters=  name.Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries );
+
+            StringBuilder sb = new StringBuilder();
+            for(var i = 0; i < splitters.Length; i++)
+            {
+                var current = splitters[i];
+
+                sb.Append(current.Substring(0,1).ToUpper());
+                if (current.Length > 1)
+                {
+                    sb.Append(current.Substring(1).ToLower());
+                }
+            }
+
+            return sb.ToString();
+
+            //var replacement = name.Replace("_", String.Empty);
+            //replacement = replacement.Substring(0, 1).ToUpper() + replacement.Substring(1).ToLower();
+            //return replacement;
         }
 
         private static string CamelReplacement(string name)

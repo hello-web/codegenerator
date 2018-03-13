@@ -19,5 +19,10 @@
 		<SqlType name="bit">bool</SqlType>
 		<SqlType name="datetime">DateTime</SqlType>
 		<SqlType name="image">Image</SqlType>
+   <!--oracle type-->
+    <SqlType name="date">DateTime</SqlType>
+    <SqlType name="varchar2">string</SqlType>
+    <SqlType name="number">int</SqlType>
+    
 	</Language>
 </DataTypes>

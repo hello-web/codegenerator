@@ -52,7 +52,7 @@ public class {TABLE.NAME}Mapping : EntityTypeConfiguration<{TABLE.NAME}Model>,IR
 	    	ToTable("{TABLE.NAME}");
 
                {TABLE.COLUMNS}
-	         Property(i => i.{COLUMN.NAME}).HasColumnName("{COLUMN.NAME}").HasColumnType("{COLUMN.TYPE}"){IF NOT COLUMN.NULLABLE}.IsRequired(){/IF};
+	         Property(i => i.{COLUMN.NAME PASCAL}).HasColumnName("{COLUMN.NAME}").HasColumnType("{COLUMN.TYPE}"){IF NOT COLUMN.NULLABLE}.IsRequired(){/IF};
                {/TABLE.COLUMNS}
 		
 		}
@@ -63,7 +63,7 @@ public class {TABLE.NAME}Mapping : EntityTypeConfiguration<{TABLE.NAME}Model>,IR
 public class {TABLE.NAME}Model:Entity
 {
       {TABLE.COLUMNS}
-      public {MAP COLUMN.TYPE} {COLUMN.NAME} {set;get;}
+      public {MAP COLUMN.TYPE} {COLUMN.NAME PASCAL} {set;get;}
      {/TABLE.COLUMNS}
 }
 ```
