@@ -119,12 +119,16 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\..\lib\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
@@ -147,6 +151,8 @@
     <Compile Include="ColumnStrategy.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CommentFactory.cs" />
+    <Compile Include="CommentProperties.cs" />
     <Compile Include="CommentStrategy.cs" />
     <Compile Include="Database.cs">
       <SubType>Code</SubType>
@@ -241,6 +247,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

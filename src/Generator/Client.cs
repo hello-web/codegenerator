@@ -71,6 +71,7 @@ namespace iCodeGenerator.Generator
 			columnsExp.AddExpression(new ColumnIfTypeExpression());
 			columnsExp.AddExpression(new ColumnNameExpression());
 			columnsExp.AddExpression(new ColumnTypeExpression());
+            columnsExp.AddExpression(new ColumnCommentExpression());
 			columnsExp.AddExpression(new ColumnLengthExpression());
 			columnsExp.AddExpression(new ColumnDefaultExpression());
 			columnsExp.AddExpression(new ColumnMapTypeExpression());

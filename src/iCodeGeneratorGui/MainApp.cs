@@ -16,27 +16,27 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace iCodeGenerator.iCodeGeneratorGui
 {
-    public partial class MainApp :Form
+    public partial class MainApp : Form
     {
         public MainApp()
         {
             InitializeComponent();
             InitializeControls();
-           // CheckForUpdates();
+            // CheckForUpdates();
         }
 
         private void CheckForUpdates()
         {
-            aboutICodegeneratorToolStripMenuItem.Text = aboutICodegeneratorToolStripMenuItem.Text + @" "+
+            aboutICodegeneratorToolStripMenuItem.Text = aboutICodegeneratorToolStripMenuItem.Text + @" " +
                                                         UpdateChecker.Version;
             if (UpdateChecker.IsNewUpdate)
             {
                 aboutICodegeneratorToolStripMenuItem.BackColor = Color.LightCoral;
                 aboutICodegeneratorToolStripMenuItem.ForeColor = Color.White;
                 aboutICodegeneratorToolStripMenuItem.Text = @" Download iCodegenerator " + @" (New Version " + UpdateChecker.Software.Version + @")";
-                
+
             }
-                
+
         }
 
         #region Forms
@@ -93,51 +93,61 @@ namespace iCodeGenerator.iCodeGeneratorGui
 
         void SfSnippetSelected(object sender, SnippetEventArgs args)
         {
-            _df.ContentText = _df.ContentText.Insert(_df.SelectionStart,new SnippetsHelper().Snippets[args.Snippet].ToString());
+            _df.ContentText = _df.ContentText.Insert(_df.SelectionStart, new SnippetsHelper().Snippets[args.Snippet].ToString());
         }
 
-		private static Table _selectedTable;
+        private static Table _selectedTable;
         private void DnfColumnSelected(object sender, ColumnEventArgs args)
         {
-			_selectedTable = args.Column.ParentTable;
-			_pf.SelectedObject = args.Column;
+            _selectedTable = args.Column.ParentTable;
+            _pf.SelectedObject = args.Column;
         }
 
         private void DnfDatabaseSelected(object sender, DatabaseEventArgs args)
         {
             _pf.SelectedObject = args.Database;
         }
-        
+
         private void DnfTableSelected(object sender, TableEventArgs args)
         {
-			_selectedTable = args.Table;
-			_pf.SelectedObject = args.Table;
+            _selectedTable = args.Table;
+            _pf.SelectedObject = args.Table;
         }
 
         private void GenerateCode()
-		{
-			try
-			{
-				if (_selectedTable == null) return;
-				var cgenerator = new Client {CustomValues = _cvf.CustomValues, ReplaceText = _cvf.ReplaceText};
+        {
+            try
+            {
+                if (_selectedTable == null) return;
+                var cgenerator = new Client { CustomValues = _cvf.CustomValues, ReplaceText = _cvf.ReplaceText };
 
-			    _rf.ContentText = cgenerator.Parse(_selectedTable, _df.ContentText);
-			}
-			catch (DataTypeManagerException ex)
-			{
-				MessageBox.Show(this, ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-			}
-		}
+                FillTableColumnComments();
+
+                _rf.ContentText = cgenerator.Parse(_selectedTable, _df.ContentText);
+            }
+            catch (DataTypeManagerException ex)
+            {
+                MessageBox.Show(this, ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void FillTableColumnComments()
+        {
+            var providerType = _dnf.OutNavigatorControl.ProviderType;
+            var conn = _dnf.OutNavigatorControl.ConnectionString;
+            CommentFactory.GetStrategy(providerType, conn, _selectedTable)
+                .FillColumnComments();
+        }
 
         [STAThread]
-		public static void Main()
-		{
-			Application.Run(new MainApp());
-		}
+        public static void Main()
+        {
+            Application.Run(new MainApp());
+        }
 
         private void DatabaseConnectClick(object sender, EventArgs e)
         {
-		    _dnf.Connect();	
+            _dnf.Connect();
         }
 
         private void DatabaseDisconnectClick(object sender, EventArgs e)
@@ -147,7 +157,7 @@ namespace iCodeGenerator.iCodeGeneratorGui
 
         private void EditConfigDatabaseClick(object sender, EventArgs e)
         {
-			_dnf.ShowEditConnectionString();
+            _dnf.ShowEditConnectionString();
         }
 
         private void GenerateCodeClick(object sender, EventArgs e)
@@ -160,17 +170,17 @@ namespace iCodeGenerator.iCodeGeneratorGui
             GenerateFiles();
         }
 
-		DirectorySelectionWindow _selectionWindow;
-		private void SelectTemplatesDirectory()
-		{
-		    if (_selectionWindow == null)
-		    {
-    		    _selectionWindow = new DirectorySelectionWindow();
+        DirectorySelectionWindow _selectionWindow;
+        private void SelectTemplatesDirectory()
+        {
+            if (_selectionWindow == null)
+            {
+                _selectionWindow = new DirectorySelectionWindow();
                 _selectionWindow.InputFolderSelected += SelectionWindowInputFolderSelected;
                 _selectionWindow.OutputFolderSelected += SelectionWindowOutputFolderSelected;
-		    }
-			_selectionWindow.ShowDialog(this);
-		}
+            }
+            _selectionWindow.ShowDialog(this);
+        }
 
         static void SelectionWindowOutputFolderSelected(object sender, FolderEventArgs args)
         {
@@ -182,46 +192,46 @@ namespace iCodeGenerator.iCodeGeneratorGui
             _InputTemplateFolder = args.FolderName;
         }
 
-		private static string _InputTemplateFolder = String.Empty;
-		private static string _OutputTemplateFolder = String.Empty;
+        private static string _InputTemplateFolder = String.Empty;
+        private static string _OutputTemplateFolder = String.Empty;
 
-		private void GenerateFiles()
-		{
-			if (_selectedTable == null) return;
-			if (IsValidFolder(_InputTemplateFolder) && IsValidFolder(_OutputTemplateFolder))
-			{
-				try
-				{
-					var generator = new FileGenerator();
-					generator.OnComplete += FileGeneratorCompleted;
-				    generator.CustomValue = _cvf.CustomValues;
-					generator.Generate(_selectedTable, _InputTemplateFolder, _OutputTemplateFolder);
-				}
-				catch (Exception e)
-				{
-					MessageBox.Show(e.Message);
-           
-				}
-			}
-			else
-			{
-				SelectTemplatesDirectory();
-			}
-		}
+        private void GenerateFiles()
+        {
+            if (_selectedTable == null) return;
+            if (IsValidFolder(_InputTemplateFolder) && IsValidFolder(_OutputTemplateFolder))
+            {
+                try
+                {
+                    var generator = new FileGenerator();
+                    generator.OnComplete += FileGeneratorCompleted;
+                    generator.CustomValue = _cvf.CustomValues;
+                    generator.Generate(_selectedTable, _InputTemplateFolder, _OutputTemplateFolder);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+
+                }
+            }
+            else
+            {
+                SelectTemplatesDirectory();
+            }
+        }
 
         private void FileGeneratorCompleted(object sender, EventArgs e)
-		{
-			//MessageBox.Show("File Generation Completed");
+        {
+            //MessageBox.Show("File Generation Completed");
             if (IsValidFolder(_OutputTemplateFolder))
-			{
-				Process.Start(_OutputTemplateFolder);
-			}
-		}
+            {
+                Process.Start(_OutputTemplateFolder);
+            }
+        }
 
-		private bool IsValidFolder(string folder)
-		{
-			return folder.Length > 0 && Directory.Exists(folder);
-		}
+        private bool IsValidFolder(string folder)
+        {
+            return folder.Length > 0 && Directory.Exists(folder);
+        }
 
         private void documentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -247,15 +257,15 @@ namespace iCodeGenerator.iCodeGeneratorGui
 
         private void databaseNavigationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(_dnf.IsHidden)
+            if (_dnf.IsHidden)
                 _dnf.Show();
-            else 
+            else
                 _dnf.Hide();
         }
 
         private void snippetsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(_sf.IsHidden)
+            if (_sf.IsHidden)
                 _sf.Show();
             else
                 _sf.Hide();
@@ -263,11 +273,11 @@ namespace iCodeGenerator.iCodeGeneratorGui
 
         private void templateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(_df.IsHidden)
+            if (_df.IsHidden)
                 _df.Show();
             else
                 _df.Hide();
-            
+
         }
 
         private void resultsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -280,7 +290,7 @@ namespace iCodeGenerator.iCodeGeneratorGui
 
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(_pf.IsHidden)
+            if (_pf.IsHidden)
                 _pf.Show();
             else
                 _pf.Hide();
@@ -288,7 +298,7 @@ namespace iCodeGenerator.iCodeGeneratorGui
 
         private void customValuesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(_cvf.IsHidden)
+            if (_cvf.IsHidden)
                 _cvf.Show();
             else
                 _cvf.Hide();

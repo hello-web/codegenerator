@@ -152,6 +152,7 @@
     <Compile Include="Expression.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Expressions\ColumnCommentExpression.cs" />
     <Compile Include="Expressions\ColumnDefaultExpression.cs">
       <SubType>Code</SubType>
     </Compile>
