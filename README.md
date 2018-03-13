@@ -63,6 +63,9 @@ public class {TABLE.NAME PASCAL}Mapping : EntityTypeConfiguration<{TABLE.NAME PA
 public class {TABLE.NAME PASCAL}Model:Entity
 {
       {TABLE.COLUMNS}
+       /// <summary>
+       /// {COLUMN.COMMENT}
+       /// </summary>
       public {MAP COLUMN.TYPE} {COLUMN.NAME PASCAL} {set;get;}
      {/TABLE.COLUMNS}
 }
