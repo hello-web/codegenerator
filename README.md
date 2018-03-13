@@ -45,7 +45,7 @@ Custom Values are Key/Value Pairs that you can define to use on a template.
 
 
 ```
-public class {TABLE.NAME}Mapping : EntityTypeConfiguration<{TABLE.NAME}Model>,IRegisterMapping
+public class {TABLE.NAME PASCAL}Mapping : EntityTypeConfiguration<{TABLE.NAME}Model>,IRegisterMapping
 	{
 		public {TABLE.NAME}Mapping()
 		{
@@ -60,7 +60,7 @@ public class {TABLE.NAME}Mapping : EntityTypeConfiguration<{TABLE.NAME}Model>,IR
 ```
 
 ```
-public class {TABLE.NAME}Model:Entity
+public class {TABLE.NAME PASCAL}Model:Entity
 {
       {TABLE.COLUMNS}
       public {MAP COLUMN.TYPE} {COLUMN.NAME PASCAL} {set;get;}
