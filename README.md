@@ -45,9 +45,9 @@ Custom Values are Key/Value Pairs that you can define to use on a template.
 
 
 ```
-public class {TABLE.NAME PASCAL}Mapping : EntityTypeConfiguration<{TABLE.NAME}Model>,IRegisterMapping
+public class {TABLE.NAME PASCAL}Mapping : EntityTypeConfiguration<{TABLE.NAME PASCAL}Model>,IRegisterMapping
 	{
-		public {TABLE.NAME}Mapping()
+		public {TABLE.NAME PASCAL}Mapping()
 		{
 	    	ToTable("{TABLE.NAME}");
 
