@@ -24,8 +24,8 @@ namespace iCodeGenerator.GenericDataAccess
 			@"SERVER=<SERVER>;UID=<USERNAME>;PWD=<PASSWORD>;",
 			@"",
 			@"Server=<SERVER>;Port=<PORT>;User Id=<USERNAME>;Password=<PASSWORD>;",
-			@"Provider=OraOLEDB.Oracle;Password=<PASSWORD>;Persist Security Info=True;User ID=<USERNAME>;Data Source=<DATASOURCE>"
-		};
+            @"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=<IP)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME = <SERVICENAME>)));User ID=<USERNAME>;Password=<PASSWORD>"
+        };
 
 		private DataProviderType _ProviderType;
 

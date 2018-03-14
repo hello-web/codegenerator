@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace iCodeGenerator.Generator.Expressions
 {
-   
+
     public class ColumnCommentExpression : Expression
     {
         /// <summary>
@@ -18,11 +18,12 @@ namespace iCodeGenerator.Generator.Expressions
         public override void Interpret(Context context)
         {
             Column column = (Column)Parameter;
-            if(column.Comments!= null)
+            if (column.Comments == null)
             {
-                context.Output = Regex.Replace(context.Input, Context.StartDelimeter + _columnName + Context.EndingDelimiter, column.Comments);
+                column.Comments = "";
             }
-           
+            var comment =Regex.Replace(column.Comments, "\n", " ");
+            context.Output = Regex.Replace(context.Input, Context.StartDelimeter + _columnName + Context.EndingDelimiter, comment);
             context.Input = context.Output;
         }
     }
