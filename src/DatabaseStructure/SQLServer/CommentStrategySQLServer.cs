@@ -19,8 +19,8 @@ namespace iCodeGenerator.DatabaseStructure.SQLServer
         {
             string sql = @"SELECT
 A.name AS table_name,
-B.name AS column_name columnName,
-C.value AS column_description Comments
+B.name AS  columnName,
+C.value AS  Comments
 FROM sys.tables A
 INNER JOIN sys.columns B ON B.object_id = A.object_id
 LEFT JOIN sys.extended_properties C ON C.major_id = B.object_id AND C.minor_id = B.column_id

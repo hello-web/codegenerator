@@ -16,7 +16,7 @@ namespace iCodeGenerator.DatabaseStructure
 		{
 			var ds = new DataSet();
 			
-			var sqlString = dataProvider.CreateCommand("SELECT OWNER, TABLE_NAME FROM all_tables where OWNER = '" + database.Name + "'",connection);
+			var sqlString = dataProvider.CreateCommand("SELECT OWNER, TABLE_NAME FROM all_tables where OWNER = '" + database.Name + "' order by table_name", connection);
 			sqlString.CommandType = CommandType.Text;
 			var da = dataProvider.CreateDataAdapter();
 			da.SelectCommand = sqlString;
